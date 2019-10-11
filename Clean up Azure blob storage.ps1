@@ -16,6 +16,7 @@
 
 $SAS = ""
 $storageaccountname = ""
+$container = ""
 
 #forcing TLS1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
@@ -25,7 +26,7 @@ $CleanupTime = [DateTime]::UtcNow.AddHours(-744)
 
 #get a list of blobs that need to be trashed
 $context = New-AzureStorageContext -StorageAccountName $storageaccountname -SasToken $SAS
-$x = Get-AzureStorageBlob -Container "sqlbackups-container" -Context $context | Where-Object { $_.LastModified.UtcDateTime -lt $CleanupTime} # | Remove-AzureStorageBlob
+$x = Get-AzureStorageBlob -Container $container -Context $context | Where-Object { $_.LastModified.UtcDateTime -lt $CleanupTime} # | Remove-AzureStorageBlob
 
 # do the dirty work
 $x | Remove-AzureStorageBlob
