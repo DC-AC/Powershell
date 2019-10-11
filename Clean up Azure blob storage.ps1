@@ -23,7 +23,7 @@ $SAS = ""
 $CleanupTime = [DateTime]::UtcNow.AddHours(-744)
 
 #get a list of blobs that need to be trashed
-$context = New-AzureStorageContext -StorageAccountName "acumensqlbackups" -SasToken $SAS
+$context = New-AzureStorageContext -StorageAccountName "" -SasToken $SAS
 $x = Get-AzureStorageBlob -Container "sqlbackups-container" -Context $context | Where-Object { $_.LastModified.UtcDateTime -lt $CleanupTime} # | Remove-AzureStorageBlob
 
 # do the dirty work
