@@ -1,5 +1,8 @@
 
 $path='$InsertYourPathHere'
+
+$Files = Get-ChildItem -Path $path
+
 foreach ($file in $files)
 {  
    $content = get-content $file
