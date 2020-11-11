@@ -51,7 +51,7 @@ if ($Database -eq 1)
 {
 $adminlogin = "DBAdmin"
 
-$pwd = (get-AzureKeyVaultSecret -vaultName "DaaSKeys" -name "attomelevatelogin").SecretValueText
+$pwd = (get-AzureKeyVaultSecret -vaultName "DaaSKeys" -name "daaslogin").SecretValueText
 $pwd = ConvertTo-SecureString $pwd  -AsPlainText -Force
 
 $sqlcred = New-Object System.Management.Automation.PSCredential($adminlogin,$pwd)
